@@ -234,3 +234,5 @@ export const HyperspeedPresets = {
     },
   },
 };
+
+export const PresetOption = ['one', 'two', 'three', 'four', 'five', 'six'];

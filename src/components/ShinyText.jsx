@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ShinyText = ({ text, disabled = false, speed = 5, className = '' }) => {
   const animationDuration = `${speed}s`;
 
@@ -9,6 +11,13 @@ const ShinyText = ({ text, disabled = false, speed = 5, className = '' }) => {
       {text}
     </div>
   );
+};
+
+ShinyText.propTypes = {
+  text: PropTypes.string,
+  disabled: PropTypes.bool,
+  speed: PropTypes.number,
+  className: PropTypes.string,
 };
 
 export default ShinyText;

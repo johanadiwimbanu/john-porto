@@ -1,14 +1,7 @@
 import { motion } from 'framer-motion';
-import {
-  Sparkles,
-  Rocket,
-  Code,
-  Mail,
-  MousePointer2,
-  MousePointer,
-  ArrowLeft,
-} from 'lucide-react';
-import ShinyText from './ShinyText';
+import { Sparkles, Code, Mail, ArrowLeft } from 'lucide-react';
+import ShinyButton from './ShinyButton';
+import PropTypes from 'prop-types';
 
 const EntranceTour = ({ goBack }) => {
   const containerVariants = {
@@ -45,7 +38,7 @@ const EntranceTour = ({ goBack }) => {
         <motion.div className='w-full py-6' variants={itemVariants}>
           <motion.div className='text-center w-full' variants={itemVariants}>
             <motion.h1
-              className='text-fluid-4xl px-12 md:text-fluid-6xl font-black text-transparent bg-clip-text text-white leading-tight flex items-center justify-center gap-4'
+              className='text-4xl md:text-6xl px-12 font-black bg-clip-text text-white leading-tight flex items-center justify-center gap-4'
               variants={itemVariants}
             >
               {/* <Sparkles className='w-12 h-12 text-cyan-300' /> */}
@@ -54,7 +47,7 @@ const EntranceTour = ({ goBack }) => {
             </motion.h1>
 
             <motion.p
-              className='px-12 py-2 mt-2 md:mt-6 w-full bg-black/5 backdrop-blur-2xl text-fluid-lg md:text-fluid-xl text-gray-200 font-medium'
+              className='px-12 py-2 mt-2 md:mt-6 w-full bg-black/5 backdrop-blur-2xl text-lg md:text-xl text-gray-200 font-medium'
               variants={itemVariants}
             >
               Selamat datang di ruang kreatif saya!&nbsp;
@@ -89,14 +82,14 @@ const EntranceTour = ({ goBack }) => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className='backdrop-blur-2xl bg-black/5 p-6 rounded-lg backdrop-blur-md border border-white/10 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group'
+                className='backdrop-blur-2xl bg-black/5 p-6 rounded-lg border border-white/10 hover:border-cyan-300/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group'
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
               >
-                <div className='text-cyan-300 group-hover:scale-105 transition-transform duration-300'>
+                <div className='text-cyan-300 group-hover:scale-105 group-hover:translate-x-1 transition-transform duration-300'>
                   {item.icon}
                 </div>
-                <h3 className='mt-4 text-fluid-lg md:text-fluid-xl font-bold text-white'>
+                <h3 className='mt-4 text-lg md:text-xl font-bold text-white'>
                   {item.title}
                 </h3>
                 <p className='mt-2 text-gray-300'>{item.description}</p>
@@ -106,24 +99,28 @@ const EntranceTour = ({ goBack }) => {
         </motion.div>
 
         <div className='flex justify-center flex-col items-center text-white'>
-          <p className='md:text-fluid-lg text-gray-300 font-medium animate-bounce transition delay-1000'>
+          <p className='md:text-lg text-gray-300 font-medium animate-bounce transition delay-1000'>
             Scroll to Explore
           </p>
 
-          <motion.button
-            onClick={() => goBack()}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className='group px-6 py-2 mt-4 rounded-full backdrop-blur-md bg-black/5 border border-orange-400 
-                   transition-all duration-300 flex items-center gap-2'
+          <ShinyButton
+            variant='orange'
+            icon={ArrowLeft}
+            onClick={() => {
+              goBack();
+            }}
+            className='mt-4'
           >
-            <ArrowLeft className='w-4 h-4 text-orange-400 group-hover:translate-x-[-2px] transition-transform' />
-            <span className='text-gray-200 font-medium'>Go Back</span>
-          </motion.button>
+            Go Back
+          </ShinyButton>
         </div>
       </div>
     </motion.div>
   );
+};
+
+EntranceTour.propTypes = {
+  goBack: PropTypes.func,
 };
 
 export default EntranceTour;

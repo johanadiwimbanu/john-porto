@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const TrueFocus = ({
   sentence = 'True Focus',
@@ -70,9 +71,9 @@ const TrueFocus = ({
           <span
             key={index}
             ref={(el) => (wordRefs.current[index] = el)}
-            className={`focus-word text-fluid-5xl ${
-              manualMode ? 'manual' : ''
-            } ${isActive && !manualMode ? 'active' : ''}`}
+            className={`focus-word text-5xl ${manualMode ? 'manual' : ''} ${
+              isActive && !manualMode ? 'active' : ''
+            }`}
             style={{
               filter: manualMode
                 ? isActive
@@ -117,6 +118,32 @@ const TrueFocus = ({
       </motion.div>
     </div>
   );
+};
+
+TrueFocus.propTypes = {
+  sentence: PropTypes.string,
+  manualMode: PropTypes.bool,
+  blurAmount: PropTypes.number,
+  borderColor: PropTypes.string,
+  glowColor: PropTypes.oneOfType([
+    PropTypes.string, // Bisa hex, rgb, atau rgba
+    (props, propName, componentName) => {
+      const value = props[propName];
+      const isValid =
+        /^#([0-9A-F]{3}){1,2}$/i.test(value) || // Hex
+        /^rgba?\(\d{1,3},\s?\d{1,3},\s?\d{1,3}(,\s?(0|1|0?\.\d+))?\)$/i.test(
+          value
+        ); // RGB & RGBA
+
+      if (!isValid) {
+        return new Error(
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Expected a valid hex, RGB, or RGBA color.`
+        );
+      }
+    },
+  ]),
+  animationDuration: PropTypes.number,
+  pauseBetweenAnimations: PropTypes.number,
 };
 
 export default TrueFocus;

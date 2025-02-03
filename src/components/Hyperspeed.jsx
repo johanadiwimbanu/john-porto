@@ -8,6 +8,7 @@ import {
   SMAAEffect,
   SMAAPreset,
 } from 'postprocessing';
+import PropTypes from 'prop-types';
 
 const Hyperspeed = ({
   effectOptions = {
@@ -1142,6 +1143,10 @@ const Hyperspeed = ({
   }, []);
 
   return <div id='lights' ref={hyperspeed}></div>;
+};
+
+Hyperspeed.propTypes = {
+  effectOptions: PropTypes.object,
 };
 
 export default Hyperspeed;

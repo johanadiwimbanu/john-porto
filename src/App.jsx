@@ -8,14 +8,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import EntranceTour from './components/EntranceTour';
 
 function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile] = useState(window.innerWidth <= 768);
+  console.log(isMobile);
   const containerRef = useRef(null);
   const [isTourBegins, setIsTourBegins] = useState(false);
 
   const effectOptions = getRandomHyperspeedPresets();
   return (
     <div id='App' ref={containerRef}>
-      {isMobile && <Crosshair containerRef={containerRef} color='#ffffff' />}
+      {!isMobile && <Crosshair containerRef={containerRef} color='#ffffff' />}
       <AnimatePresence mode='wait'>
         <div className='z-10 w-full'>
           {isTourBegins ? (

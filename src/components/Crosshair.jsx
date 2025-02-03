@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import PropTypes from 'prop-types';
 
 // Linear interpolation function
 const lerp = (a, b, n) => (1 - n) * a + n * b;
@@ -233,4 +234,8 @@ const Crosshair = ({ color = 'white', containerRef = null }) => {
   );
 };
 
+Crosshair.propTypes = {
+  color: PropTypes.string,
+  containerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+};
 export default Crosshair;
